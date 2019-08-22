@@ -24,10 +24,10 @@ require('dotenv').config({ path: 'variables.env' });
 
     //8 - recieve message 
 
-    const messageWebhook = require('./message-webhook');
+   //  const messageWebhook = require('./message-webhook');
 
-    app.post('/', messageWebhook);
+   //  app.post('/', messageWebhook);
 
-   // const botFramwork = require('./botFramwork-webhook');
+   const botFramwork = require('./botFramwork-webhook');
 
-   // app.post('/', botFramwork);
+   app.post('/', botFramwork);
