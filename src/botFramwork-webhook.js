@@ -11,6 +11,8 @@ module.exports = (req, res) => {
           let webhook_event = entry.messaging[0];
           let sender_psid = webhook_event.sender.id;
         if (webhook_event.message) {
+
+          console.log(webhook_event.message.text)
           } else if (webhook_event.postback) {
               handlePostback(webhook_event.sender.id , webhook_event.postback)
             }
@@ -44,7 +46,7 @@ module.exports = (req, res) => {
       callSendAPI(sender_psid, response);
     }
     if(payload === 'help'){
-      response = helpTemplete('كيف يمكن ان نساعدك ');
+      response = helpTemplate('كيف يمكن ان نساعدك ');
       callSendAPI(sender_psid, response);
     }
     if(payload === 'complain'){
@@ -278,29 +280,6 @@ const inqueryMachineTemplete = (text) => {
 
 // help layer ONE 
 
-const helpTemplete = (text) => {
-  return {
-      "attachment":{
-          "type":"template",
-          "payload":{
-              "template_type":"button",
-              "text": text,
-              "buttons":[
-                {
-                    "type":"postback",
-                    "title":"حاله الجهاز",
-                    "payload":"help_machine_status"
-                },
-                {
-                    "type":"postback",
-                    "title":"عمليات الجهاز",
-                    "payload":"help_machine_operation"
-                }
-            ]
-          }
-      }
-  }
-}
 
 const helpMachineStatusTemplete = (text) => {
   return {
@@ -337,17 +316,12 @@ const helpMachineOperationTemplete = (text) => {
                 {
                     "type":"postback",
                     "title":"حاله عمليه ",
-                    "payload":"help_machine_operation_trans_status"
+                    "payload":"help_machine_operations_trans_status"
                 },
                 {
                     "type":"postback",
                     "title":"عمولات اليوم",
-                    "payload":"help_machine_operation_today_commision"
-                },
-                {
-                  "type":"postback",
-                  "title":"تحويلات الجهاز",
-                  "payload":"help_machine_operation_machine_transfer"
+                    "payload":"help_machine_operations_today_commision"
                 }
             ]
           }
